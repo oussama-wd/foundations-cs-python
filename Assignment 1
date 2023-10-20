@@ -1,0 +1,47 @@
+print('''Assignment 1
+
+1) Factorial:
+-------------
+''')
+
+def factorial():
+  fac = 1
+  userinput = int(input("Please enter a positive integer: "))
+  temp = userinput
+  if(userinput > 0):
+    while(temp > 1):
+      fac = fac * temp
+      temp -= 1
+  elif(userinput == 0):
+    fac = 0
+  else:
+    print("Invalid entry")
+    factorial()
+  print('Factorial of ',userinput, ' = ', fac)
+  
+#factorial()
+print('''-------------------------------------------------------------
+
+2) Divisors:
+------------
+''')
+
+def divisors():
+  userinput = int(input("Please enter a positive integer: "))
+  temp = userinput
+  divisor = 1
+  DivList = []
+  while(divisor < userinput):
+    if(temp % divisor == 0):
+      DivList.append(divisor)
+    divisor += 1
+  DivList.append(userinput)
+  print("Divisors of ",userinput," are : ",DivList)
+  divisors()
+
+#divisors()
+print('''-------------------------------------------------------------
+
+3) Reverse a String:
+--------------------
+''')
