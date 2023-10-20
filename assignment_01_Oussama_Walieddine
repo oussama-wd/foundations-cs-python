@@ -1,0 +1,222 @@
+print('''Assignment 1
+
+1) Factorial:
+-------------
+''')
+
+def factorial():
+  fac = 1
+  userinput = int(input("Please enter a positive integer: "))
+  temp = userinput
+  if(userinput > 0):
+    while(temp > 1):
+      fac = fac * temp
+      temp -= 1
+  elif(userinput == 0):
+    fac = 0
+  else:
+    print("Invalid entry")
+    factorial()
+  print('Factorial of ',userinput, ' = ', fac)
+  
+factorial()
+
+print('''-------------------------------------------------------------
+
+2) Divisors:
+------------
+''')
+
+def divisors():
+  userinput = int(input("Please enter a positive integer: "))
+  temp = userinput
+  divisor = 1
+  DivList = []
+  while(divisor < userinput):
+    if(temp % divisor == 0):
+      DivList.append(divisor)
+    divisor += 1
+  DivList.append(userinput)
+  print("Divisors of ",userinput," are : ",DivList)
+
+divisors()
+
+print('''-------------------------------------------------------------
+
+3) Reverse a String:
+--------------------
+''')
+
+def reverseString():
+  string = input("Please enter a string: ")
+  counter = 1
+  reversed = ''
+# while counter in range(1,len(string)+1):
+  while(counter <= len(string)):
+    reversed += string[len(string)-counter]
+    counter += 1
+  print(reversed)
+
+reverseString()
+
+print('''-------------------------------------------------------------
+
+4) Even Numbers:
+----------------
+''')
+
+def even():
+  userInput = input("Please enter a list of integers separated by a space: ")
+  strList = userInput.split()
+  intList = [eval(i) for i in strList]
+  EvenList = []
+  counter = 0
+  while counter < len(intList):
+    if(((intList[counter]) % 2) == 0):
+      EvenList.append(intList[counter])
+    counter += 1
+  print(EvenList)
+  
+even()
+
+print('''-------------------------------------------------------------
+
+5) Strong Password:
+-------------------
+''')
+
+def strongPass():
+  userInput = input("Please enter a password: ")
+  
+  length = False
+  if(len(userInput) >= 8):
+    length = True
+
+  uppercase = False
+  i = 0
+  while i < (len(userInput)):
+    if(userInput[i].isupper()):
+      uppercase = True
+    i += 1
+  
+  lowercase = False
+  i = 0
+  while i < (len(userInput)):
+    if(userInput[i].islower()):
+      lowercase = True
+    i += 1
+  
+  digit = False
+  i = 0
+  while i < (len(userInput)):
+    if(userInput[i].isdigit()):
+      digit = True
+    i += 1
+
+  special = False
+  i = 0
+  while i < (len(userInput)):
+    if(userInput[i] in '#?!$'):
+       special = True
+    i += 1
+
+  if(length and uppercase and lowercase and digit and special):
+    print("Strong password")
+  else:
+    print("Weak password")
+
+strongPass()
+
+print('''-------------------------------------------------------------
+
+6) IPv4 (FSW):
+--------------
+''')
+
+def IPv4():
+  invalid = False
+  userInput = input("Please enter an IPv4 address: ")
+  ipAddress = userInput.split(".")
+  
+  if(len(ipAddress) == 4):
+    i = 0
+    while i < 4:
+      octet = ipAddress[i]
+      if((0 <= int(ipAddress[i]) <= 255) == False or (octet[0] == '0' and len(octet) != 1)):
+        invalid = True
+      i += 1
+  else:
+    invalid = True
+    
+  if(invalid):
+    print("Invalid IP address")
+  else:
+    print("IP address is Valid")
+
+IPv4()
+
+
+print('''-------------------------------------------------------------
+
+7) Statistics (FSD):
+--------------------
+''')
+
+def stats():
+  userInput = input("Please enter a list of integers separated by a space: ")
+  strList = userInput.split()
+  intList = [eval(i) for i in strList]
+  #  print('userInput = ',userInput,'\nstrList = ',strList,'\nintList = ',intList)
+  
+  # Mean
+  i = 0
+  mean = 0
+  while i < len(intList):
+    mean += intList[i]
+    i += 1
+  mean = mean / len(intList)
+  print('Mean = ',mean)
+  
+  # Median 
+  intListSorted = intList
+  intListSorted.sort()
+  if(len(intListSorted) % 2 == 0):
+    median = (intListSorted[len(intList)//2 - 1] + intListSorted[len(intList)//2]) / 2
+  else:
+    median = intListSorted[len(intList)//2]
+  print('Median = ',median)
+  
+  # Mode
+  i = 0
+  maxCounter = 0
+  while i < len(intList):
+    counter = 0
+    j = 0
+    while j < len(intList):
+      if(intList[i] == intList[j]):
+        counter += 1
+      j += 1     
+    if(counter > maxCounter):
+      maxCounter = counter
+      mode = intList[i]
+    i += 1
+  print('Mode = ',mode)
+  
+  # Range
+  range = intListSorted[len(intListSorted) - 1] - intListSorted[0]
+  print('Range = ',range)
+
+  # Variance
+  i = 0
+  variance = 0
+  while i < len(intList):
+    variance += (intList[i] - mean)**2
+    i += 1
+  variance = variance / len(intList)
+  print('Variance = ',variance)
+
+  # Standard Deviation
+  standardDeviation = variance**0.5
+  print('Standard Deviation = ',standardDeviation)
+  
+stats()
