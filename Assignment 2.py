@@ -2,6 +2,7 @@
 # FCS 49 - Assignment 2 - Oussama Walieddine #
 ##############################################
 
+
 # print program title #
 print(" FCS 49 - Assignment 2 - Oussama Walieddine\n--------------------------------------------")
 
@@ -25,7 +26,8 @@ def displayMenu():
 
 =================================
   ''')
-  
+
+
 ###########################
 # Choice 1 - Count Digits #
 ###########################
@@ -94,22 +96,68 @@ def choice2():
   for i in inputEval:
     if(i == False):
       numeric = False    
-
 # if user types 'back' return to main function
   if(userInput == ["back"]):
     main()
-
 # if all values are numeric, call the recursive maxValue function then return to choice 2
   elif(numeric == True):
     intList = [int(i) for i in userInput]
     print(maxValue(intList)," is the maximum value in the list.\n--------------------------")
     choice2()
-
 # Values in list are not all numeric, return to choice 2
   else:
     print("Invalid list.\n---------------")
     choice2()
 
+
+#########################
+# Choice 3 - Count Tags #
+#########################
+
+# Counts the number of tags in an HTML file #
+
+# define countTags function (recursive) #
+def countTags(tag,itemList):
+  # itemList is being truncated with each recursion, when len(itemList) becomes 0,recusion is complete and the tags are counted
+  if len(itemList) == 0:
+    return 0
+  else:
+    # if the first item in the list contains the tag, add 1 to the count and return to the recursion
+    if("<" + tag + ">" in itemList[0]):
+      return 1 + countTags(tag,itemList[1:])
+    # if the first item in the list does not contain the tag, return to the recursion
+    else:
+      return countTags(tag,itemList[1:])
+
+# define choice 3 main function #
+def choice3():
+  script = '''<html>
+<head>
+<title>My Website</title>
+</head>
+<body>
+<h1>Welcome to my website!</h1>
+<p>Here you'll find information about me and my hobbies.</p>
+<h2>Hobbies</h2>
+<ul>
+<li>Playing guitar</li>
+<li>Reading books</li>
+<li>Traveling</li>
+<li>Writing cool h1 tags</li>
+</ul>
+</body>
+</html>'''
+  print('\nType <back> to go back to the previous menu or ')
+  tag = input("enter the tag you wish to count: ")
+  # return to previous menu if user enters 'back'
+  if(tag == 'back'):
+    main()
+  # if user inputs a tag, split script into a list of strings, call the countTags function, and print result
+  else:
+    print("<",tag,"> was found ",countTags(tag,script.split()),"times.\n---------------------------")
+  # return to choice 3
+    choice3()
+  
 
 #################
 # Main Function #
