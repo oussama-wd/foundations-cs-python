@@ -21,8 +21,7 @@ def displayMenu():
    1 - Count Digits
    2 - Find Max
    3 - Count Tags
-   4 - Count Normalized Columns
-   5 - Exit
+   4 - E
 
 =================================
   ''')
