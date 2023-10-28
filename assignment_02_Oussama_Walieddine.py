@@ -21,7 +21,7 @@ def displayMenu():
    1 - Count Digits
    2 - Find Max
    3 - Count Tags
-   4 - E
+   4 - Exit
 
 =================================
   ''')
@@ -171,8 +171,6 @@ def main():
   elif(userInput == "3"):
     choice3()
   elif(userInput == "4"):
-    choice4()
-  elif(userInput == "5"):
     print("Program terminated... Have a nice day")
     return
   else:
